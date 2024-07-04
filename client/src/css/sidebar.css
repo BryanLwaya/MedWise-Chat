@@ -1,0 +1,31 @@
+* {
+    transition: .2s ease-in-out;
+}
+.new-chat{
+    cursor: pointer;
+}
+
+.sidebar-content span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    font-size: 11pt;
+    transition: .5s ease-in-out;
+}
+
+  .sidebar-header {
+    flex-shrink: 0;
+  }
+  
+  .sidebar-footer {
+    flex-shrink: 0;
+    /* position: fixed; */
+    bottom: 0;
+  }
+  
+  .sidebar-content {
+    flex-grow: 1;
+    overflow-y: scroll;
+    
+  }
+  
