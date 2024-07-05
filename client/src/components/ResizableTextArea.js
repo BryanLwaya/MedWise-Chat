@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const ResizableTextArea = ({ value, onChange, maxHeight }) => {
+const ResizableTextArea = ({ value, onChange, maxHeight, onKeyPress }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const ResizableTextArea = ({ value, onChange, maxHeight }) => {
       ref={textareaRef}
       placeholder='Ask me anything...'
       value={value}
+      onKeyPress={onKeyPress}
       onChange={onChange}
       className="w-full p-3 border-2 border-gray-400 rounded-md overflow-y-auto bg-gray-100 h-20 active:border-gray-500 resize-none"
       style={{ maxHeight: `${maxHeight}px` }}

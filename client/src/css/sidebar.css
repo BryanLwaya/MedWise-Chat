@@ -5,7 +5,7 @@
     cursor: pointer;
 }
 
-.sidebar-content span {
+.sidebar-content .chat-item {
     overflow: hidden;
     text-overflow: ellipsis;
     text-wrap: nowrap;
@@ -23,9 +23,24 @@
     bottom: 0;
   }
   
+  
+  .sidebar-content::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  .sidebar-content::-webkit-scrollbar-track {
+    background: #0F1E46; /* Background of the scrollbar track */
+  }
+  
+  .sidebar-content::-webkit-scrollbar-thumb {
+    background-color: #3b82f6; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Roundness of the scrollbar thumb */
+    border: 3px solid #0F1E46; /* Padding around the scrollbar thumb */
+  }
+  
+  /* For Firefox */
   .sidebar-content {
-    flex-grow: 1;
-    overflow-y: scroll;
-    
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 #0F1E46;
   }
   

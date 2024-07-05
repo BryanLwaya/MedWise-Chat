@@ -4,7 +4,7 @@ function Header({
   title,
 }) {
   return (
-    <div className='title mb-4 p-4 border-b-2 border-primary w-full'>
+    <div className='title p-4 border-b-2 border-primary w-full'>
       <h1 className='text-xl text-primary font-bold ml-2'>{title}</h1>
     </div>
   )

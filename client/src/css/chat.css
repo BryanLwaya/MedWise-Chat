@@ -1,3 +1,39 @@
 .textarea {
-    box-shadow: rgba(56, 56, 56, 0.2);
+    flex-shrink: 0;
+    bottom: 0;
 }
+
+.chats::-webkit-scrollbar {
+    width: 12px; 
+  }
+  
+.chats::-webkit-scrollbar-track {
+    background: #d1d1d1; 
+  }
+  
+.chats::-webkit-scrollbar-thumb {
+    background-color: #fcfcfc; 
+    border-radius: 6px; 
+    border: 3px solid #d1d1d1; 
+  }
+  
+.chats {
+    scrollbar-width: thin;
+    scrollbar-color: #fcfcfc #d1d1d1;
+  }
+
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+.spinner {
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    border-left-color: #000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+  

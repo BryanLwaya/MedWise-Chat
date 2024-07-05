@@ -1,72 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "../css/sidebar.css";
 import logo from "../icons/MedWise Bot.png";
 import edit_png from "../icons/edit-3-svgrepo-com.svg";
 import logout_png from "../icons/logout-svgrepo-com.svg";
 import profile from "../icons/profile.png";
+import axios from 'axios';
 
-function Sidebar() {
+const Sidebar = ({ setChatId }) => {
+  const [chats, setChats] = useState([]);
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/get_chats');
+        setChats(response.data);
+      } catch (error) {
+        console.error('Error fetching chat titles:', error);
+      }
+    };
+
+    fetchChats();
+  }, []);
+
+
+  const createChat = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/create_chat', {
+        title: 'Chat with Doctor'
+      });
+      setChatId(response.data.chat_id);
+    } catch (error) {
+      console.error('Error creating chat:', error);
+    }
+  };
+
   return (
-    <div className="flex flex-col w-1/5 h-screen bg-primary text-white">
+    <div className="flex flex-col w-1/5 h-screen bg-primary text-white sticky">
       {/* LOGO */}
       <div className="sidebar-header flex items-center justify-center">
         <img src={logo} alt="" className="w-24 h-24" />
       </div>
 
-      <div className='sidebar-content p-4 overflow-y-auto'>
+      <div className='sidebar-content p-4 overflow-y-auto flex-1 scroll-p-2'>
         {/* NEW CHAT */}
-        <div className="new-chat bg-secondary rounded p-2 mb-4 active:bg-highlight">
+        <div
+          className="new-chat bg-secondary rounded p-2 mb-4 active:bg-highlight cursor-pointer"
+          onClick={createChat}
+        >
           <div className='flex items-center gap-2 ml-2'>
             <img src={edit_png} alt="edit" className="h-7 w-7 " />
             <p className='font-semibold text-primary'>New Chat</p>
           </div>
         </div>
 
-        {/* HISTORY SECTION */}
-        <div>
-          <ul>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Diabetes Symptoms</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">High blood pressure prevention measures</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Diabetes best practices</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Health advice</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Personal Health Assistance</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Personal Health Assistance</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Personal Health Assistance</span>
-              </a>
-            </li>
-            <li className="mb-3">
-              <a href="#" className="flex items-center p-2 hover:bg-highlight rounded">
-                <span className="ml-2">Personal Health Assistance</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+        {/* Chat History */}
+        {chats.map(chat => (
+          <div
+            key={chat._id}
+            className="chat-item p-2 mb-2 bg-highlight rounded cursor-pointer"
+            onClick={() => setChatId(chat._id)}
+          >
+            {chat.title}
+          </div>
+        ))}
       </div>
 
       {/* FOOTER   */}
@@ -87,7 +83,7 @@ function Sidebar() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
