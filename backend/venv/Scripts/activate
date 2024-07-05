@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="P:\MedWise-Chat\backend\venv"
+VIRTUAL_ENV="E:\Dev\Python\SCHOOL\MedWise-Chat\backend\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
 
 class Config:
-    MONGO_URI = os.environ.get('MONGO_URI') or 'mongodb://localhost:27017/chatbotDB'
+    load_dotenv()
+    MONGO_URI = os.environ.get('MONGO_URI')
